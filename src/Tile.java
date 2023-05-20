@@ -12,7 +12,7 @@ public class Tile {
     }
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Tile)) {  //checks if the comparison object is a tile by itself
+        if (!(other instanceof Tile)) {
             return false;
         }
         Tile tile = (Tile) other;

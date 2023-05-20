@@ -1,18 +1,16 @@
 import java.util.Arrays;
 
 public class Board {
-    private Tile[][] tiles;
+    private final Tile[][] tiles;
     private final int []dimension;
     private int[] emptyTile;
 
     public Board(String boardString){
-        String []temp = boardString.split("\\|");// _ does this even work
-        String[] testing_size = temp[0].split(" ");
+        String []temp = boardString.split("\\|");//
+        String[] testingColSize = temp[0].split(" ");
         String[] loop_string;
-        this.dimension = new int[2];
+        this.dimension = new int[]{temp.length,testingColSize.length};
         this.emptyTile = new int[2];
-        this.dimension[0] = temp.length;
-        this.dimension[1]= testing_size.length;
         int size = dimension[0]*dimension[1];
         this.tiles = new Tile[dimension[0]][dimension[1]];
         Tile tile;
@@ -31,9 +29,7 @@ public class Board {
         }
     }
     public Board(Tile[][] tiles, int[] dimension, int[] emptyTile){
-        int[] newEmptyTile = new int[2];
-        newEmptyTile[0] = emptyTile[0];
-        newEmptyTile[1] = emptyTile[1];
+        int[] newEmptyTile = new int[]{emptyTile[0],emptyTile[1]};
         int rows = dimension[0];
         int cols = dimension[1];
         Tile[][] newTiles = new Tile[rows][cols];
@@ -41,7 +37,6 @@ public class Board {
             for(int col = 0; col < cols; col++){
                 Tile tmpTile =  new Tile(tiles[row][col].getValue());
                 newTiles[row][col] = tmpTile;
-
             }
         }
         this.tiles=newTiles;
@@ -80,12 +75,9 @@ public class Board {
                 tmpArray[1]++;
                 break;
         }
-        tmp = this.tiles[this.emptyTile[0]][this.emptyTile[1]];
-        tiles[this.emptyTile[0]][this.emptyTile[1]] = tiles[this.emptyTile[0]-tmpArray[0]][this.emptyTile[1]-tmpArray[1]];
-        tiles[this.emptyTile[0]-tmpArray[0]][this.emptyTile[1]-tmpArray[1]] = tmp;
-        //emptyTile[0] -= tmpArray[0];
-        //emptyTile[1] -= tmpArray[1];
-
+        tmp = tiles[emptyTile[0]][emptyTile[1]];
+        tiles[emptyTile[0]][emptyTile[1]] = tiles[emptyTile[0]-tmpArray[0]][emptyTile[1]-tmpArray[1]];
+        tiles[emptyTile[0]-tmpArray[0]][emptyTile[1]-tmpArray[1]] = tmp;
     }
 
 

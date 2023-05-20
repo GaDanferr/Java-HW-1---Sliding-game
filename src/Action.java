@@ -1,16 +1,10 @@
 public class Action {
-    private int[] emptyTile;
     private int[] movedTile;
     private final Direction direction;
     private final Board board;
 
     public Action(int[] emptyTile, Direction direction, Board board){
-        int[] tmp = new  int[2];
-        this.emptyTile = new int[2];
-        this.emptyTile[0] = emptyTile[0];
-        this.emptyTile[1] = emptyTile[1];
-        tmp[0] = emptyTile[0];
-        tmp[1] = emptyTile[1];
+        int[] tmp = new  int[]{emptyTile[0],emptyTile[1]};
         switch(direction){ //prob a better way to do this since operating on the empty as well its a bit confusing doing
             case UP:        // it this way
                 ++tmp[0];

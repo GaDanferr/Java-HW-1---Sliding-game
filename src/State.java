@@ -1,7 +1,7 @@
 import java.security.cert.TrustAnchor;
 
 public class State {
-    private Board board;
+    private final Board board;
     public boolean isGoal(){
         int[] dimension = board.getDimension();
         int rowCount = dimension[0];
@@ -28,9 +28,7 @@ public class State {
         int[] newLocation;
         int correctCount = 0;
         for(Direction direction: Direction.values()) {
-            newLocation = new int[2];
-            newLocation[0] = board.getEmptyTile()[0];
-            newLocation[1] = board.getEmptyTile()[1];
+            newLocation = new int[]{board.getEmptyTile()[0],board.getEmptyTile()[1]};
             action = new Action(newLocation,direction,board );
             if(action.checkValid()){
                 preActions[correctCount] = action;
@@ -59,16 +57,35 @@ public class State {
         int colSize = board.getDimension()[1];
         int hValue = 0;
         int counter = 1;
+        int amountToMove = 0;
+        int misplacedValue;
+        int colPlacement;
+        int rowPlacement;
         for (int row = 0; row< rowSize;row++){
             for(int col = 0 ;col < colSize ;col++){
                 if(board.getTile(row,col).getValue() != counter){
-                    hValue+=1;
+                    amountToMove++;
+                    misplacedValue = board.getTile(row,col).getValue() - 1;
+                    rowPlacement = misplacedValue / colSize;
+                    colPlacement = misplacedValue % colSize;
+                    if(rowPlacement > row){
+                        hValue += rowPlacement - row;
+                    }
+                    else{
+                        hValue += row - rowPlacement;
+                    }
+                    if(colPlacement > col){
+                        hValue += colPlacement -col;
+                    }
+                    else {
+                        hValue += col - colPlacement;
+                    }
                 }
                 counter++;
             }
 
         }
-        return hValue;
+        return (hValue+ amountToMove);
     }
 
 
