@@ -4,6 +4,9 @@ public class Tile {
     public Tile(String value){   //constructor
         this.value = Integer.parseInt(value);
     }
+    public Tile(int value){
+        this.value = value;
+    }
     public int getValue(){
         return this.value;
     }

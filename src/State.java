@@ -65,8 +65,8 @@ public class State {
                 }
             }
         }
-        return --counter;
-
+        counter--;
+        return counter;
     }
 
 

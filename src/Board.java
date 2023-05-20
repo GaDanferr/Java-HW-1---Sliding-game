@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Board {
-    private final Tile[][] tiles;
+    private Tile[][] tiles;
     private final int []dimension;
     private int[] emptyTile;
 
@@ -31,9 +31,22 @@ public class Board {
         }
     }
     public Board(Tile[][] tiles, int[] dimension, int[] emptyTile){
-        this.tiles=tiles;
+        int[] newEmptyTile = new int[2];
+        newEmptyTile[0] = emptyTile[0];
+        newEmptyTile[1] = emptyTile[1];
+        int rows = dimension[0];
+        int cols = dimension[1];
+        Tile[][] newTiles = new Tile[rows][cols];
+        for(int row =0; row < rows ; row++){
+            for(int col = 0; col < cols; col++){
+                Tile tmpTile =  new Tile(tiles[row][col].getValue());
+                newTiles[row][col] = tmpTile;
+
+            }
+        }
+        this.tiles=newTiles;
         this.dimension=dimension;
-        this.emptyTile =emptyTile;
+        this.emptyTile =newEmptyTile;
 
     }
 
