@@ -10,19 +10,16 @@ public class Node {
         this.pNode = pNode;
         this.action = action;
         this.state = state;
-        this.heuristicValue =0;
+        this.heuristicValue = this.state.setHeuristicValue();
     }
     public Node  (String boardString){
         Board board = new Board(boardString);
         this.pNode = null;
         this.action = null;
         this.state = new State(board);
-        this.heuristicValue =0;
+        this.heuristicValue = this.state.setHeuristicValue();
     }
-    //private Node findChildren(this ,action,){
-      //  Node childNode = new Node()
 
-    //}
     public State getState(){
         return this.state;
     }

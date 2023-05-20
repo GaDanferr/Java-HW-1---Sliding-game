@@ -6,11 +6,11 @@ public class Action {
     public Action(int[] emptyTile, Direction direction, Board board){
         switch(direction){ //prob a better way to do this since operating on the empty as well its a bit confusing doing
             case UP:        // it this way
-                ++emptyTile[0];
+                --emptyTile[0];
                 this.movedTile = emptyTile;
                 break;
             case DOWN:
-                --emptyTile[0];
+                ++emptyTile[0];
                 this.movedTile = emptyTile;
                 break;
             case LEFT:
@@ -27,7 +27,11 @@ public class Action {
     }
 
     public String toString(){
-        return "Move" +" "+ board.getTile(movedTile[0],movedTile[1]).getValue()+" " + direction;
+        if(this.checkValid()){
+            return "Move" +" "+ board.getTile(movedTile[0],movedTile[1]).getValue()+" " + direction.name().toLowerCase();
+
+        }
+        return "Invalid Action";
     }
     public boolean checkValid(){
         int[] dimension = this.board.getDimension();
@@ -41,7 +45,7 @@ public class Action {
                 break;
             case LEFT:
             case RIGHT:
-                if((this.movedTile[1]>0)&&(this.movedTile[1]<dimension[1])){
+                if((this.movedTile[1] >= 0)&&(this.movedTile[1] < dimension[1])){
                     return true;
                 }
                 break;
