@@ -13,10 +13,10 @@ public class Action {
         tmp[1] = emptyTile[1];
         switch(direction){ //prob a better way to do this since operating on the empty as well its a bit confusing doing
             case UP:        // it this way
-                --tmp[0];
+                ++tmp[0];
                 break;
             case DOWN:
-                ++tmp[0];
+                --tmp[0];
                 break;
             case LEFT:
                 ++tmp[1];

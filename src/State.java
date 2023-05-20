@@ -57,16 +57,18 @@ public class State {
     public int setHeuristicValue(){
         int rowSize = board.getDimension()[0];
         int colSize = board.getDimension()[1];
+        int hValue = 0;
         int counter = 1;
         for (int row = 0; row< rowSize;row++){
             for(int col = 0 ;col < colSize ;col++){
                 if(board.getTile(row,col).getValue() != counter){
-                    counter++;
+                    hValue+=1;
                 }
+                counter++;
             }
+
         }
-        counter--;
-        return counter;
+        return hValue;
     }
 
 

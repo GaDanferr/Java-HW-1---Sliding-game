@@ -68,10 +68,10 @@ public class Board {
         int[] tmpArray = new int[2];
         switch(action.getDirection()){ //prob a better way to do this since operating on the empty as well its a bit confusing doing
             case UP:
-                tmpArray[0]--;
+                tmpArray[0]++;
                 break;
             case DOWN:
-                tmpArray[0]++;
+                tmpArray[0]--;
                 break;
             case RIGHT:
                 tmpArray[1]--;
